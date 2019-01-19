@@ -1,0 +1,59 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table td{
+            border: 1px solid black;
+        }
+    </style>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="query">
+        <table>
+            <tr v-for="(v,k) in listQuery(query)">
+                <td>{{v.id}}</td>
+                <td>{{v.name}}</td>
+                <td @click="del(k)">删除</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+<script>
+    let vue=new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {id:1,name:"阿萨德"},
+                {id:2,name:"是大法官"},
+                {id:3,name:"阿回家萨德"}
+            ],
+            query:""
+        },
+        methods:{
+            del(){
+                alert("123")
+            },
+            listQuery(query){
+                let arr=[];
+                this.list.some((v)=>{
+                    if (v.name.includes(query)) {
+                        arr.push(v)
+                    }
+                })
+                return arr
+            }
+        }
+    });
+
+</script>
